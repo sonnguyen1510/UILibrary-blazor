@@ -1,0 +1,261 @@
+﻿
+/* Add these styles to your CSS file */
+.input-date {
+    border :0;
+    margin-bottom : 20px;
+}
+
+
+.input-date{
+    border : 0;
+}
+
+.dropbtn {
+    background-color: #3498db;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    height: 340px;
+    width: 310px;
+    padding :5px;
+    display: none;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    animation: fbFadelnDown 300ms cubic-bezier(.23,1,.32,1)
+}
+
+    .dropdown-content.show {
+        display: inline-block;
+        z-index: 99999;
+        position:absolute !important;
+        
+    }
+/* Popup arrow */
+.dropdown-contentt::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.input{
+    
+    margin-top : 15px;
+    padding-bottom : 5px;
+}
+
+.day-picker {
+  
+    
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    background-color: #3498db;
+    color: white;
+}
+
+.days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    
+}
+
+.current-month {
+    padding: 7px;
+    cursor: pointer;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    margin-bottom : 2px;
+    color: black;
+}
+    .current-month.weedkend {
+        color: red
+    }
+    .current-month.date-in-range {
+        background-color: #d4d4d4;
+    }
+.other-month {
+    padding: 7px;
+    cursor: pointer;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    font-size: 15px;
+    align-items: center;
+    margin-bottom: 2px;
+    color: lightgrey;
+}
+    .other-month.weedkend {
+        color: #f78b8b;
+    }
+
+    .other-month.date-in-range {
+        background-color: #d4d4d4;
+        color: #fcfcfc;
+    }
+.current-day {
+    border-radius: 7px;
+    border: 1px solid cornflowerblue;
+}
+
+.choosed-day {
+    background-color: cornflowerblue;
+    border-radius: 7px;
+    color: white;
+}
+
+.start-day {
+    background-color: cornflowerblue;
+    border-top-left-radius: 7px;
+    border-bottom-left-radius : 7px;
+    color: white;
+}
+
+.end-day {
+    background-color: cornflowerblue;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+    color: white;
+}
+
+.display-current-month {
+    padding-left: 15px;
+    padding-right: 15px;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-size : 17px;
+}
+
+
+.weekday {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    font-weight : bold;
+}
+
+
+.time-picker {
+    
+    height: 100%;
+   
+}
+.time-picker-label {
+    height: max-content;
+
+    font-size: 15px;
+    align-self: center;
+    margin: 5px;
+}
+    .time-picker-label.title{
+        font-weight : bold;
+        width : 90px;
+    }
+
+.time-picker-item {
+    height : 45px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 5px;
+}    
+
+.time-picker-seperate-time {
+    font-weight: bold;
+    font-size: 25px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.select-time {
+    height :45px;
+    padding: 8px;
+    background-color : white;
+    margin : 0;
+    width : 60px;
+    border-radius: 5px;
+}
+
+    .select-time.hour {
+        color: black;
+    }
+
+    .select-time.minute {
+        color: black;
+    }
+   
+
+
+@keyframes fbFadelnDown {
+    0% {
+        opacity: 0;
+        transform: translate3d(0,-20px,0);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate3d(0,0,0);
+    }
+}
+
+.time-picker-group{
+    width : 100%;
+    display : flex;
+    flex-direction : column;
+}
+
+.time-picker-group-button {
+    width: min-content;
+    display: flex;
+    flex-direction: row;
+    margin-right : 10px;
+    float: right;
+}
+
+.button {
+    color: cornflowerblue;
+    width : 70px;
+    height : 37px;
+    font-weight: bold;
+    font-size: 15px;
+    border : 0;
+    border-radius : 7px;
+    margin :5px;
+    background-color : transparent;
+}
+
+.button.confirm{
+    color : white;
+    background-color : cornflowerblue;
+}

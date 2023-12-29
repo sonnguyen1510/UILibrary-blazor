@@ -1,0 +1,531 @@
+﻿@using UILibrary.Object;
+<div class="@DropdownContentClass" @onclick:preventDefault="true" @onclick:stopPropagation="true" style="top : @(location["top"]+60)px ; left : @(location["left"]+ 5)px ; height : @(getHeight())px">
+    <div class="display-current-month">
+        <button @onclick="PreviousMonth">&lt;</button>
+        <h3>@CurrentMonthVN(), @CurrentMonth.Year</h3>
+        <button @onclick="NextMonth">&gt;</button>
+    </div>
+    <div class="day-picker">
+        <div class="days">
+            @foreach (var dayOfWeek in WeekDays)
+            {
+                @if (dayOfWeek.Equals("CN"))
+                {
+                    <div class="weekday" style="color : red">
+                        @dayOfWeek
+                    </div>
+                }
+                else
+                {
+                    <div class="weekday">
+                        @dayOfWeek
+                    </div>
+                }
+            }
+            @foreach (var day in Days)
+            {
+                if (!value.IsRangeDate)
+                {
+                    @if (AreDatesSame(day.Date, CurrentDay))
+                    {
+                        if (AreDatesSame(value.PickedDate , CurrentDay))
+                        {
+                            <div class="@GetDayClass(day) current-day choosed-day" @onclick:preventDefault="true" @onclick:stopPropagation="true"  @onclick="() => DayClicked(day)">
+                                @day.Day
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="@GetDayClass(day) current-day" @onclick:preventDefault="true" @onclick:stopPropagation="true"  @onclick="() => DayClicked(day)">
+                                @day.Day
+                            </div>
+                        }
+                    }
+                    else if (AreDatesSame(value.PickedDate , day.Date))
+                    {
+                        <div class="@GetDayClass(day) choosed-day" @onclick:preventDefault="true" @onclick:stopPropagation="true"  @onclick="() => DayClicked(day)">
+                            @day.Day
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="@GetDayClass(day)" @onclick:preventDefault="true" @onclick:stopPropagation="true"  @onclick="() => DayClicked(day)">
+                            @day.Day
+                        </div>
+                    }
+                }
+                else
+                {
+                    if (value.StartDateSet && !value.EndDateSet)
+                    {
+                        if (AreDatesSame(day.Date, value.StartDate))
+                        {
+                            <div class="@GetDayClass(day) choosed-day" @onclick:preventDefault="true" @onclick:stopPropagation="true"  @onclick="() => DayClicked(day)">
+                                @day.Day
+                            </div>
+                        }
+                        else
+                        {
+                            if (AreDatesSame(day.Date, CurrentDay))
+                            {
+                                <div class="@GetDayClass(day) current-day" @onclick:preventDefault="true" @onclick:stopPropagation="true"  @onclick="() => DayClicked(day)">
+                                    @day.Day
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="@GetDayClass(day)" @onclick:preventDefault="true" @onclick:stopPropagation="true"  @onclick="() => DayClicked(day)">
+                                    @day.Day
+                                </div>
+                            }
+                        }
+                    }
+
+                    else if (value.EndDateSet && !value.StartDateSet)
+                    {
+                        if (AreDatesSame(day.Date, value.EndDate))
+                        {
+                            <div class="@GetDayClass(day) choosed-day" @onclick:preventDefault="true" @onclick:stopPropagation="true"  @onclick="() => DayClicked(day)">
+                                @day.Day
+                            </div>
+                        }
+                        else
+                        {
+                            if (AreDatesSame(day.Date, CurrentDay))
+                            {
+                                <div class="@GetDayClass(day) current-day" @onclick:preventDefault="true" @onclick:stopPropagation="true"  @onclick="() => DayClicked(day)">
+                                    @day.Day
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="@GetDayClass(day)" @onclick:preventDefault="true" @onclick:stopPropagation="true"  @onclick="() => DayClicked(day)">
+                                    @day.Day
+                                </div>
+                            }
+                        }
+                    }
+
+                    else if (value.StartDateSet && value.EndDateSet)
+                    {
+                        if (AreDatesSame(day.Date, value.StartDate))
+                        {
+                            <div class="@GetDayClass(day) start-day" @onclick:preventDefault="true" @onclick:stopPropagation="true"  @onclick="() => DayClicked(day)">
+                                @day.Day
+                            </div>
+                        }
+                        else if (AreDatesSame(day.Date, value.EndDate))
+                        {
+                            <div class="@GetDayClass(day) end-day" @onclick:preventDefault="true" @onclick:stopPropagation="true" @onclick="() => DayClicked(day)">
+                                @day.Day
+                            </div>
+                        }
+                        else if (value.StartDate < day.Date && day.Date < value.EndDate)
+                        {
+                            if (AreDatesSame(day.Date,CurrentDay))
+                            {
+                                <div class="@GetDayClass(day) date-in-range current-day" @onclick:preventDefault="true" @onclick:stopPropagation="true"  @onclick="() => DayClicked(day)">
+                                    @day.Day
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="@GetDayClass(day) date-in-range" @onclick:preventDefault="true" @onclick:stopPropagation="true"  @onclick="() => DayClicked(day)">
+                                    @day.Day
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            if (AreDatesSame(day.Date, CurrentDay))
+                            {
+                                <div class="@GetDayClass(day) current-day" @onclick:preventDefault="true" @onclick:stopPropagation="true"  @onclick="() => DayClicked(day)">
+                                    @day.Day
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="@GetDayClass(day)" @onclick:preventDefault="true" @onclick:stopPropagation="true"  @onclick="() => DayClicked(day)">
+                                    @day.Day
+                                </div>
+                            }
+
+                        }
+                    }
+                    else
+                    {
+                        if (AreDatesSame(day.Date, CurrentDay))
+                        {
+                            <div class="@GetDayClass(day) current-day" @onclick:preventDefault="true" @onclick:stopPropagation="true" @onclick="() => DayClicked(day)">
+                                @day.Day
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="@GetDayClass(day)" @onclick:preventDefault="true" @onclick:stopPropagation="true" @onclick="() => DayClicked(day)">
+                                @day.Day
+                            </div>
+                        }
+
+                    }
+                }
+            }
+
+        </div>
+    </div>
+    @if (value.Timepicker)
+    {
+        <div class="time-picker">
+            <div class="time-picker-item">
+                
+            </div>
+        </div>
+    }else if (value.TimepickerRange)
+    {
+        <div class="time-picker">
+            <div class="time-picker-item">
+                <p class="time-picker-label title">Bắt đầu lúc: </p>
+                <select @bind="StartHour" @onclick:preventDefault="true" @onclick:stopPropagation="true" class="select-time hour">
+                        @for (int i = 0; i < 24; i++)
+                        {
+                            <option value="@i">@i.ToString("00")</option>
+                        }
+                    </select>
+                <p class="time-picker-label">Giờ</p>
+
+                <select @bind="StartMinute" @onclick:preventDefault="true" @onclick:stopPropagation="true" class="select-time minute">
+                        @for (int i = 0; i < 60; i += 5)
+                        {
+                            <option value="@i">@i.ToString("00")</option>
+                        }
+                    </select>
+                <p class="time-picker-label">Phút</p>
+            </div>
+
+
+
+            <div class="time-picker-item">
+                <p class="time-picker-label title">Kết thúc lúc:</p>
+                    <select class ="select-time hour" @bind="EndHour" @onclick:preventDefault="true" @onclick:stopPropagation="true" >
+                        @for (int i = 0; i < 24; i++)
+                        {
+                            <option value="@i">@i.ToString("00")</option>
+                        }
+                    </select>
+                    <p class="time-picker-label">Giờ</p>
+                    
+                    <select class ="select-time minute" @bind="EndMinute" @onclick:preventDefault="true" @onclick:stopPropagation="true" >
+                        @for (int i = 0; i < 60; i += 5)
+                        {
+                            <option value="@i">@i.ToString("00")</option>
+                        }
+                    </select>
+                    <p class="time-picker-label">Phút</p>
+            </div>
+           <div class="time-picker-group-button">
+               <button class="button">Hủy</button>
+                <button class="button confirm">Xác nhận</button>
+           </div>
+        </div>
+    }
+</div>
+
+
+   
+
+
+
+
+@code {
+
+    //Parameter
+    [Parameter]
+    public ODatePicker? value { get; set; }
+
+    [Parameter]
+    public Dictionary<string, double> location { get; set; }
+
+
+    @* [Parameter]
+    public string Style { get; set; } = "";
+
+    [Parameter]
+    public string Class { get; set; } = ""; *@
+
+    
+    
+
+
+    //Date information
+
+    
+    private DateTime CurrentDay { get; set; } = DateTime.Now;
+    private DateTime CurrentMonth { get; set; } 
+    
+
+
+    private List<DayInfo> Days { get; set; }
+
+    private string[] WeekDays = { "T2", "T3", "T4", "T5", "T6", "T7", "CN"};
+
+    public bool IsDropdownOpen { get; set; } = true;
+
+
+    // Time picker
+    private int StartHour { get; set; } = DateTime.Now.Hour;
+    private int StartMinute { get; set; } = DateTime.Now.Minute;
+
+    private int EndHour { get; set; } = DateTime.Now.Hour;
+    private int EndMinute { get; set; } = DateTime.Now.Minute;
+
+}
+@functions {
+    //Parameter
+    [Parameter]
+    public Action<ODatePicker>? onChange { get; set; }
+
+
+
+    //function
+    private string DropdownContentClass => IsDropdownOpen ? "dropdown-content show" : "dropdown-content";
+
+    private void ToggleDropdown()
+    {
+        IsDropdownOpen = !IsDropdownOpen;
+    }
+
+    private void CloseDropdown()
+    {
+        IsDropdownOpen = false;
+    }
+
+    protected override void OnInitialized()
+    {
+        if (value.IsRangeDate)
+        {
+            if (value.ViewFromStart)
+            {
+                if (value.StartDateSet)
+                {
+                    //set start month
+                    CurrentMonth = value.StartDate;
+                }
+                else
+                {
+                    if(value.EndDateSet)
+                    {
+                        CurrentMonth = value.EndDate;
+                    }
+                    else
+                    {
+                        //set start month
+                        CurrentMonth = CurrentDay;
+                    }
+                }
+            }
+            else
+            {
+                if (value.EndDateSet)
+                {
+                    //set start month
+                    CurrentMonth = value.EndDate;
+                }
+                else
+                {
+                    if (value.StartDateSet)
+                    {
+                        CurrentMonth = value.StartDate;
+                    }
+                    else
+                    {
+                        //set start month
+                        CurrentMonth = CurrentDay;
+                    }
+                }
+            }
+        }
+        else
+        {
+            CurrentMonth = value.PickedDate;
+        }
+        Days = GetDaysInMonth(CurrentMonth);
+    }
+
+
+    //picker
+
+
+    private void UpdateDays()
+    {
+        Days = GetDaysInMonth(CurrentMonth);
+    }
+
+    private List<DayInfo> GetDaysInMonth(DateTime date)
+    {
+        var firstDayOfMonth = new DateTime(date.Year, date.Month, 1);
+        var daysInMonth = DateTime.DaysInMonth(date.Year, date.Month);
+        var lastMonth = firstDayOfMonth.AddMonths(-1);
+        int weekends = 1;
+
+        // Calculate the start day of the week for the first day of the month
+        var startDayOfWeek = (int)firstDayOfMonth.DayOfWeek;
+
+        // Calculate the number of days to display from the previous month
+        var daysFromPrevMonth = startDayOfWeek == 0 ? 6 : startDayOfWeek - 1;
+
+        var days = new List<DayInfo>();
+
+        // Add days from the previous month
+        var preDays = DateTime.DaysInMonth(lastMonth.Year, lastMonth.Month) - daysFromPrevMonth;
+        for (int i = 0; i < daysFromPrevMonth; i++)
+        {
+            var prevmonth = new DateTime(lastMonth.Year,lastMonth.Month,preDays+i +1);
+            days.Add(new DayInfo { Day = prevmonth.Day, Date = prevmonth, IsCurrentMonth = false, MonthType = monthType.LAST_MONTH, IsWeedkend = weekends % 7 == 0 });
+            weekends++;
+        }
+
+        // Add days from the current month
+        for (int i = 1; i <= daysInMonth; i++)
+        {
+            var curentMonth = new DateTime(date.Year, date.Month, i);
+            days.Add(new DayInfo { Day = curentMonth.Day, Date = curentMonth, IsCurrentMonth = true, MonthType = monthType.CURRENT_MONTH, IsWeedkend = weekends % 7 == 0 });
+            weekends++;
+        }
+
+        // Add days from the next month
+        var daysFromNextMonth = 42-days.Count ;
+        for (int i = 0; i < daysFromNextMonth; i++)
+        {
+            var nextMonthDay = firstDayOfMonth.AddMonths(1).AddDays(i);
+            days.Add(new DayInfo { Day = nextMonthDay.Day, Date = nextMonthDay, IsCurrentMonth = false, MonthType = monthType.NEXT_MONTH, IsWeedkend = weekends % 7 == 0 });
+            weekends++;
+        }
+
+        return days;
+    }
+
+    private void NextMonth()
+    {
+        CurrentMonth = CurrentMonth.AddMonths(1);
+        UpdateDays();
+    }
+    private void PreviousMonth()
+    {
+        CurrentMonth = CurrentMonth.AddMonths(-1);
+        UpdateDays();
+    }
+
+    private string CurrentMonthVN()
+    {
+        switch (CurrentMonth.Month)
+        {
+            case 1:
+                return "Tháng 1";
+            case 2:
+                return "Tháng 2";
+            case 3:
+                return "Tháng 3";
+            case 4:
+                return "Tháng 4";
+            case 5:
+                return "Tháng 5";
+            case 6:
+                return "Tháng 6";
+            case 7:
+                return "Tháng 7";
+            case 8:
+                return "Tháng 8";
+            case 9:
+                return "Tháng 9";
+            case 10:
+                return "Tháng 10";
+            case 11:
+                return "Tháng 11";
+            case 12:
+                return "Tháng 12";
+            default:
+                return "Invalid Month";
+        }
+    }
+
+
+
+    private string GetDayClass(DayInfo day)
+    {
+        string monthType = day.IsCurrentMonth ? "current-month" : "other-month";
+
+        string dayType = day.IsWeedkend ? " weedkend" : ""; 
+        return monthType +dayType ;
+    }
+
+    private void DayClicked(DayInfo day)
+    {
+        if (day.MonthType == monthType.LAST_MONTH)
+        {
+            PreviousMonth();
+        }
+        else if (day.MonthType == monthType.NEXT_MONTH)
+        {
+            NextMonth();
+        }
+
+        if (value.IsRangeDate)
+        {
+            value.AddDate(day.Date);
+
+            if (value.StartDateSet && value.EndDateSet)
+            {
+                onChange?.Invoke(value);
+            }
+
+        }
+        else
+        {
+            onChange?.Invoke(value);
+        }
+        StateHasChanged();
+        // log click value
+        Console.WriteLine(day.Day);
+    }
+
+    public class DayInfo
+    {
+        public int Day { get; set; }
+        public DateTime Date { get; set; }
+        public bool IsCurrentMonth { get; set; }
+        public monthType MonthType { get; set; }
+        public bool IsWeedkend { get; set; }
+    }
+    public enum monthType
+    {
+        LAST_MONTH = 1,
+        NEXT_MONTH = 2,
+        CURRENT_MONTH = 3
+    }
+
+    public static bool AreDatesSame(DateTime date1, DateTime date2)
+    {
+        // Compare the year, month, and day parts of the dates
+        return date1.Year == date2.Year && date1.Month == date2.Month && date1.Day == date2.Day;
+    }
+
+    //TIME PICKER
+
+
+    public int getHeight()
+    {
+        if (value.TimepickerRange)
+        {
+            return 340 + 150;
+        }
+        else if (value.Timepicker)
+        {
+            return 340 + 100;
+        }
+        else
+        {
+            return 330;
+        }
+    }
+}
+

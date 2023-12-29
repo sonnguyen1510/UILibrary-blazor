@@ -1,0 +1,66 @@
+﻿
+@using Microsoft.JSInterop;
+@using UILibrary.Object;
+@using UILibrary.Source;
+@using global::UILibrary.Service;
+
+@inject DatePickerService service
+
+<style>
+    .Modal {
+        width : 100%;
+        height : 100%;
+        position :absolute;
+        z-index : 999;
+    }
+</style>
+
+
+    @if (DatePickerVisibility)
+    {
+    <div class="Modal" @onclick="changeVisibility" >
+        <DatePickerDialog value = "DatePickervalue" location="@DatePickerRect" onChange="onChangeDatePicker"></DatePickerDialog>
+    </div>
+    }
+
+
+
+
+
+@code {
+    //===============================================================DATE PICKER======================================================= 
+    public ODatePicker? DatePickervalue { get; set; }
+
+    public bool DatePickerVisibility { get; set; } = false;
+
+    public Dictionary<string, double> DatePickerRect { get; set; }
+
+    protected override void OnInitialized()
+    {
+        service.RenderDatePickerDialog += UpdateDatePicker;
+    }
+
+    private void UpdateDatePicker(ODatePicker message, Dictionary<string, double> sourceRect)
+    {
+        DatePickerVisibility = !DatePickerVisibility;
+        DatePickervalue = message;
+        DatePickerRect = sourceRect;
+        StateHasChanged();
+    }
+
+    public void onChangeDatePicker(ODatePicker time)
+    {
+        DatePickerVisibility = !DatePickerVisibility;
+        service.updateDatePicker(time);
+        StateHasChanged();
+    }
+
+    
+    public void changeVisibility()
+    {
+        DatePickerVisibility = !DatePickerVisibility;
+        StateHasChanged();
+    }
+
+    //===============================================================TIME PICKER=======================================================
+}

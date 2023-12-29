@@ -1,0 +1,158 @@
+﻿@using Microsoft.JSInterop;
+@using System.Text.Json;
+@using UILibrary.Object;
+@using global::UILibrary.Service;
+
+@inject DatePickerService service
+@inject IJSRuntime JSRuntime
+
+<input class="@Class" @ref="elementRef" @bind="DisplayValue" style="@Style" type="text" @onclick="ToggleDropdown" readonly />
+
+<script>
+    window.getElementLocation = function (element) {
+        var rect = element.getBoundingClientRect();
+
+        return [rect.top, rect.bottom, rect.left, rect.right]
+        
+
+    };
+</script>
+@code {
+    [Parameter]
+    public string Style { get; set; } = "";
+
+    [Parameter]
+    public string Class { get; set; } = "";
+
+    [Parameter]
+    public bool? isRangePicker { get; set; }
+
+    //Display
+    public string DisplayValue { get; set; } = "";
+
+    [Parameter]
+    public bool DisplayStartDate { get; set; } = false;
+
+    [Parameter]
+    public bool DisplayEndDate { get; set; } = false;
+
+    [Parameter]
+    public bool DisplayStartTime { get; set; } = false;
+
+    [Parameter]
+    public bool DisplayEndTime { get; set; } = false;
+
+    [Parameter]
+    public bool ViewFromStart { get; set; } = false;
+
+    [Parameter]
+    public bool Timepicker { get; set; } = false;
+
+    //Value
+    [Parameter]
+    public ODatePicker? value { get; set; }
+
+
+    //Date information
+    private bool IsDropdownOpen { get; set; } = false;
+
+    private ElementReference elementRef;
+
+    private Dictionary<string, double> sourceRect { set; get; }
+}
+
+@functions{
+    [Parameter]
+    public Func<ODatePicker, Task>? onChange { get; set; }
+
+
+
+    private void ToggleDropdown()
+    {
+        service.RenderDatePicker(value, sourceRect);
+    }
+
+    protected override void OnInitialized()
+    {
+        //Connect to service
+        service.UpdateDatePicker += UpdateCurrentDay;
+        //set start month
+
+
+        value.IsRangeDate = isRangePicker ?? false;
+
+
+        if (Timepicker)
+        {
+            if (value.IsRangeDate)
+            {
+                value.TimepickerRange = true;
+            }
+            else
+            {
+                value.Timepicker = true;
+            }
+        }
+
+
+        value.ViewFromStart = ViewFromStart;
+        displayValue(value);
+    }
+
+    private void UpdateCurrentDay(ODatePicker message)
+    {
+        value = message;
+        onChange?.Invoke(value);
+        displayValue(value);
+        StateHasChanged();
+    }
+
+    public void displayValue (ODatePicker value)
+    {
+        if (value.IsRangeDate)
+        {
+
+            string displayOption = "";
+            if (DisplayStartDate && value.StartDateSet)
+            {
+                displayOption += (value.StartDate.ToString("yyyy-MM-dd") + " ") ?? "";
+            }
+
+            if (DisplayStartTime && value.StartDateSet)
+            {
+                displayOption += (value.StartDate.ToString("HH-mm") + " ") ?? "";
+            }
+
+            if (DisplayStartDate && value.StartDateSet && DisplayStartTime && value.EndDateSet)
+            {
+                displayOption += " - ";
+            }
+
+            if (DisplayEndDate && value.EndDateSet)
+            {
+                displayOption += (value.EndDate.ToString("yyyy-MM-dd") + " ") ?? "";
+            }
+
+            if (DisplayEndTime && value.EndDateSet)
+            {
+                displayOption += (value.EndDate.ToString("HH-mm") + " ") ?? "";
+            }
+            DisplayValue = displayOption;
+        }
+        else
+        {
+            
+            DisplayValue = value.PickedDate.ToString("yyyy-MM-dd");
+        }
+        StateHasChanged();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            sourceRect = await JSRuntime.InvokeAsync<Dictionary<string, double>>("getElementLocation", elementRef);
+            //Console.WriteLine("inputLocation" + $"{sourceRect["top"]} {sourceRect["left"]}");
+        }
+    }
+}

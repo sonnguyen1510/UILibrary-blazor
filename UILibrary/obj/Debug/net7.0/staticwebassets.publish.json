@@ -1,0 +1,71 @@
+{
+  "Version": 1,
+  "Hash": "ACj6cssLko/XmSbT51Y1ntWpryus24dpFHGDg+yANNY=",
+  "Source": "UILibrary",
+  "BasePath": "_content/UILibrary",
+  "Mode": "Default",
+  "ManifestType": "Publish",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "UILibrary\\wwwroot",
+      "Source": "UILibrary",
+      "ContentRoot": "C:\\Users\\NguyenXuanSon\\Documents\\GitHub\\api.transviet.com.vn\\UILibrary\\UILibrary\\wwwroot\\",
+      "BasePath": "_content/UILibrary",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\NguyenXuanSon\\Documents\\GitHub\\api.transviet.com.vn\\UILibrary\\UILibrary\\obj\\Debug\\net7.0\\scopedcss\\bundle\\UILibrary.styles.css",
+      "SourceId": "UILibrary",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\NguyenXuanSon\\Documents\\GitHub\\api.transviet.com.vn\\UILibrary\\UILibrary\\obj\\Debug\\net7.0\\scopedcss\\bundle\\",
+      "BasePath": "_content/UILibrary",
+      "RelativePath": "UILibrary.styles.css",
+      "AssetKind": "All",
+      "AssetMode": "CurrentProject",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ApplicationBundle",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\NguyenXuanSon\\Documents\\GitHub\\api.transviet.com.vn\\UILibrary\\UILibrary\\obj\\Debug\\net7.0\\scopedcss\\bundle\\UILibrary.styles.css"
+    },
+    {
+      "Identity": "C:\\Users\\NguyenXuanSon\\Documents\\GitHub\\api.transviet.com.vn\\UILibrary\\UILibrary\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\UILibrary.bundle.scp.css",
+      "SourceId": "UILibrary",
+      "SourceType": "Computed",
+      "ContentRoot": "C:\\Users\\NguyenXuanSon\\Documents\\GitHub\\api.transviet.com.vn\\UILibrary\\UILibrary\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\",
+      "BasePath": "_content/UILibrary",
+      "RelativePath": "UILibrary.bundle.scp.css",
+      "AssetKind": "All",
+      "AssetMode": "Reference",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ProjectBundle",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "C:\\Users\\NguyenXuanSon\\Documents\\GitHub\\api.transviet.com.vn\\UILibrary\\UILibrary\\obj\\Debug\\net7.0\\scopedcss\\projectbundle\\UILibrary.bundle.scp.css"
+    },
+    {
+      "Identity": "C:\\Users\\NguyenXuanSon\\Documents\\GitHub\\api.transviet.com.vn\\UILibrary\\UILibrary\\wwwroot\\JS\\DatePicker.js",
+      "SourceId": "UILibrary",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\NguyenXuanSon\\Documents\\GitHub\\api.transviet.com.vn\\UILibrary\\UILibrary\\wwwroot\\",
+      "BasePath": "_content/UILibrary",
+      "RelativePath": "JS/DatePicker.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\JS\\DatePicker.js"
+    }
+  ]
+}

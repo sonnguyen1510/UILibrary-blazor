@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "dgSpecHash": "EnPKnYPqtIwUCihMu0pRi/7p/jEHg7Flk5mtTCQxHPgtypHmqbf+0e34Il7pzssepomwBSsnRs6ZB/1ojGJOlQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\NguyenXuanSon\\Desktop\\UILibrary\\UILibrary\\UILibrary.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\NguyenXuanSon\\.nuget\\packages\\microsoft.aspnetcore.authorization\\7.0.14\\microsoft.aspnetcore.authorization.7.0.14.nupkg.sha512",
+    "C:\\Users\\NguyenXuanSon\\.nuget\\packages\\microsoft.aspnetcore.components\\7.0.14\\microsoft.aspnetcore.components.7.0.14.nupkg.sha512",
+    "C:\\Users\\NguyenXuanSon\\.nuget\\packages\\microsoft.aspnetcore.components.analyzers\\7.0.14\\microsoft.aspnetcore.components.analyzers.7.0.14.nupkg.sha512",
+    "C:\\Users\\NguyenXuanSon\\.nuget\\packages\\microsoft.aspnetcore.components.forms\\7.0.14\\microsoft.aspnetcore.components.forms.7.0.14.nupkg.sha512",
+    "C:\\Users\\NguyenXuanSon\\.nuget\\packages\\microsoft.aspnetcore.components.web\\7.0.14\\microsoft.aspnetcore.components.web.7.0.14.nupkg.sha512",
+    "C:\\Users\\NguyenXuanSon\\.nuget\\packages\\microsoft.aspnetcore.metadata\\7.0.14\\microsoft.aspnetcore.metadata.7.0.14.nupkg.sha512",
+    "C:\\Users\\NguyenXuanSon\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\7.0.0\\microsoft.extensions.dependencyinjection.7.0.0.nupkg.sha512",
+    "C:\\Users\\NguyenXuanSon\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",
+    "C:\\Users\\NguyenXuanSon\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\7.0.1\\microsoft.extensions.logging.abstractions.7.0.1.nupkg.sha512",
+    "C:\\Users\\NguyenXuanSon\\.nuget\\packages\\microsoft.extensions.options\\7.0.1\\microsoft.extensions.options.7.0.1.nupkg.sha512",
+    "C:\\Users\\NguyenXuanSon\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512",
+    "C:\\Users\\NguyenXuanSon\\.nuget\\packages\\microsoft.jsinterop\\7.0.14\\microsoft.jsinterop.7.0.14.nupkg.sha512",
+    "C:\\Users\\NguyenXuanSon\\.nuget\\packages\\system.io.pipelines\\7.0.0\\system.io.pipelines.7.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
